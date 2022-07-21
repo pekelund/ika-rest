@@ -1,7 +1,9 @@
-package se.foitekelund.ikarest;
+package se.foitekelund.ikarest.utils;
 
 import lombok.Getter;
 import lombok.Setter;
+import se.foitekelund.ikarest.pojos.Receipt;
+import se.foitekelund.ikarest.pojos.ReceiptItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class ReceiptParser {
 
     private Receipt receipt;
 
-    ReceiptParser(String receiptString, String lineSeparator) {
+    public ReceiptParser(String receiptString, String lineSeparator) {
         this.receiptString = receiptString;
         this.lineSeparator = lineSeparator;
         state = State.INIT;
@@ -27,7 +29,6 @@ public class ReceiptParser {
         List<ReceiptItem> receiptItemList = new ArrayList<>();
 
         for (String line : parts) {
-            System.out.println("rad: " + line);
 
             switch (state) {
                 case INIT -> {

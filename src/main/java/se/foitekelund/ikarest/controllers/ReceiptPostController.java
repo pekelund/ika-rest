@@ -1,17 +1,18 @@
-package se.foitekelund.ikarest;
+package se.foitekelund.ikarest.controllers;
 
 import java.io.IOException;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import se.foitekelund.ikarest.ReceiptPostResponse;
+import se.foitekelund.ikarest.service.ReceiptPostService;
+import se.foitekelund.ikarest.pojos.Receipt;
 
 @RestController
-public class FileUploadController {
+public class ReceiptPostController {
 
     @PostMapping("/upload")
     public Receipt uploadFile(
@@ -23,13 +24,12 @@ public class FileUploadController {
 
         System.out.println("fileName = " + fileName);
         System.out.println("size = " + size);
-        System.out.println("multipartFile = " + multipartFile);
-        Receipt receipt = FileUploadUtil.saveFile(fileName, multipartFile);
 
-        FileUploadResponse response = new FileUploadResponse();
+        Receipt receipt = ReceiptPostService.saveFile(fileName, multipartFile);
+
+        ReceiptPostResponse response = new ReceiptPostResponse();
         response.setFileName(fileName);
         response.setSize(size);
-        //        response.setDownloadUri("/downloadFile/" + filecode);
 
         return receipt;
     }

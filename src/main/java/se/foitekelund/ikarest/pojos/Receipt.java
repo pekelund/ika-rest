@@ -1,10 +1,8 @@
-package se.foitekelund.ikarest;
+package se.foitekelund.ikarest.pojos;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter

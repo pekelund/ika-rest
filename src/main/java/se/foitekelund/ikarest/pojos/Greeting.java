@@ -1,4 +1,4 @@
-package se.foitekelund.ikarest;
+package se.foitekelund.ikarest.pojos;
 
 public class Greeting {
 

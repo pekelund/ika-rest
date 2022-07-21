@@ -1,4 +1,4 @@
-package se.foitekelund.ikarest;
+package se.foitekelund.ikarest.pojos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,20 +24,8 @@ public class ReceiptItem {
     private String discountPercent;
 
     public void setFirstLine(String line) {
-//        Pattern pattern = Pattern.compile("[a-zA-Z0-9.]+");
-//        Matcher matcher = pattern.matcher(line);
-//        
-//
-//// Find all matches
-//        while (matcher.find()) {
-//
-//            // Get the matching string
-//            String match = matcher.group();
-//            System.out.println("match = " + match);
-//        }
         String[] items = line.split(" ");
-        System.out.println("items.length = " + items.length);
-        System.out.println("items[items.length-5] = " + items[items.length-5]);
+
         setEan(items[items.length-5]);
         setAPrice(items[items.length-4]);
         setPrice(items[items.length-1]);
@@ -53,8 +41,7 @@ public class ReceiptItem {
 
     public void setSecondLine(String line) {
         String[] items = line.split(" ");
-        System.out.println("items.length = " + items.length);
-        System.out.println("items[items.length-1] = " + items[items.length-1]);
+
         setDiscount(items[items.length-1]);
         int descriptionEnd = items.length - 2;
         if (items[items.length-3].contains("%")) {
@@ -63,9 +50,6 @@ public class ReceiptItem {
         }
         String[] names = Arrays.copyOfRange(items, 0, descriptionEnd);
         setDescription(String.join(" ", names));
-        System.out.println("names = " + String.join(" ", names));
-        for (String s : items) {
-            System.out.println("d = " + s);
-        }
+
     }
 }
